@@ -9,3 +9,9 @@ Computing accuracy: Brandon - 10 minutes
 Calculate Means function: Nathan - 45 minutes
 Calculate Standard Deviation Function: Nathan - 1 hour
 Process and split data: Nathan - 30 minutes
+Custom Decision Tree: Michelle - 2 hour 30 minutes
+Library Decision Tree: Michelle - 1 hour
+Information gain file: Michelle - 45 minutes
+Project slides and report contributions: Michelle - 1 hour 30 minutes
+
+
