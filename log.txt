@@ -4,6 +4,7 @@ Chose new idea: everyone - 1 hour
 Gaussian Probability Function: Brandon - 1 hour 
 Predict Injury Function: Brandon - 1 hour
 Applying prediction algorithm to dataset: Brandon - 1 hour 30 minutes
+Debugging math error and guassian probability function: Brandon - 1 hour
 Computing accuracy: Brandon - 10 minutes
 Calculate Means function: Nathan - 45 minutes
 Calculate Standard Deviation Function: Nathan - 1 hour
