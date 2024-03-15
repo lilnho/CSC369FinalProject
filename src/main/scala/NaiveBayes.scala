@@ -7,7 +7,9 @@ import org.apache.spark.rdd._
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.stat.MultivariateStatisticalSummary
-object NaiveBayes {
+import scala.math.{max, min, sqrt}
+
+object Naive {
   // input: rdd you want the mean values of
   // (Age, Weight, Height, PreviousInjuries, Intensity, RecoveryTime) ---- excludes likelihood
   def calcMean(rdd: RDD[(Double, Double, Double, Double, Double, Double, Double)]): (Double, Double, Double, Double, Double, Double) = {
@@ -53,41 +55,58 @@ object NaiveBayes {
     val stdDev6 = math.sqrt(summed._6 / count)
     (stdDev1, stdDev2, stdDev3, stdDev4, stdDev5, stdDev6)
   }
+  // Computes the probability density of x in a univariate Gaussian distribution
+  def gaussianProbability(x: Double, mean: Double, variance: Double): Double = {
+    val numerator = math.exp(-math.pow(x - mean, 2) / (2 * variance))
+    val denominator = math.sqrt(2 * math.Pi * variance)
+    val res = numerator / denominator
+    res
 
-    // Computes the probability density of x in a univariate Gaussian distribution
-    def gaussianProbability(x: Double, mean: Double, variance: Double): Double = {
-      val numerator = math.exp(-math.pow(x - mean, 2) / (2 * variance))
-      val denominator = math.sqrt(2 * math.Pi * variance)
-      numerator / denominator
-    }
-    // Your Naive Bayes prediction function
-    def predictInjury(features: Array[Double],
-                      injuredMeans: Array[Double], injuredVariances: Array[Double],
-                      notInjuredMeans: Array[Double], notInjuredVariances: Array[Double],
-                      priorInjured: Double, priorNotInjured: Double): Double = {
-      val injuredProb = math.log(priorInjured) + features.zip(injuredMeans).zip(injuredVariances).map {
-        case ((x, mean), variance) => math.log(gaussianProbability(x, mean, variance))
-      }.sum
+  }
+  // Naive Bayes prediction function
+  def predictInjury(features: Array[Double],
+                    injuredMeans: Array[Double], injuredVariances: Array[Double],
+                    notInjuredMeans: Array[Double], notInjuredVariances: Array[Double],
+                    priorInjured: Double, priorNotInjured: Double): Double = {
 
-      val notInjuredProb = math.log(priorNotInjured) + features.zip(notInjuredMeans).zip(notInjuredVariances).map {
-        case ((x, mean), variance) => math.log(gaussianProbability(x, mean, variance))
-      }.sum
+    val injuredProb = math.log(priorInjured) + features.zip(injuredMeans).zip(injuredVariances).map {
+      case ((x, mean), variance) => math.log(gaussianProbability(x, mean, variance))
+    }.sum
+    println(s"InjuredProb: $injuredProb")
 
-      if (injuredProb > notInjuredProb) 1.0 else 0.0
-    }
+    val notInjuredProb = math.log(priorNotInjured) + features.zip(notInjuredMeans).zip(notInjuredVariances).map {
+      case ((x, mean), variance) => math.log(gaussianProbability(x, mean, variance))
+    }.sum
+    println(s"NotInjuredProb: $notInjuredProb")
 
+    if (injuredProb > notInjuredProb) 1.0 else 0.0
+  }
+  def calculatePrecision(data: RDD[(String, Double, Double)]): Double = {
+    val truePositivesCount = data.filter {
+      case (_, predictedLabel, actualLabel) => predictedLabel == 1.0 && actualLabel == 1.0
+    }.count()
+
+    val predictedPositivesCount = data.filter {
+      case (_, predictedLabel, _) => predictedLabel == 1.0
+    }.count()
+
+    if (predictedPositivesCount == 0) 0.0
+    else (truePositivesCount.toDouble / predictedPositivesCount.toDouble) * 100.0
+  }
 
   def main(args: Array[String]): Unit = {
-    print("hello")
+
+    System.setProperty("hadoop.home.dir", "c:/winutils/")
 
     val conf = new SparkConf().setAppName("NaiveBayesInjuryPrediction").setMaster("local[4]")
     val sc = new SparkContext(conf)
+
     // Load the data from a CSV file
 
     //Age, Weight, Height, Previous_Injuries, Training_Intensity, Recovery_Time, Likelihood_of_Injury
     val injuryData = sc.textFile("injury_data.csv")
-    // Split the data into training and test sets (80% training, 20% testing)
-    val seed = 12345L // Seed for reproducibility
+    // Split the data into training and test sets (90% training, 10% testing)
+    val seed = 6151 // Seed for reproducibility
     val Array(trainingData, testData) = injuryData.randomSplit(Array(0.9, 0.1), seed)
 
     // Cache the training data for efficiency
@@ -112,18 +131,23 @@ object NaiveBayes {
     val likelyMeans = calcMean(dataLikely)
     val unlikelyMeans = calcMean(dataUnlikely)
 
+
     val likelyVariances = calcStdDev(dataLikely, likelyMeans).productIterator.map(_.asInstanceOf[Double]).toArray
     val unlikelyVariances = calcStdDev(dataUnlikely, unlikelyMeans).productIterator.map(_.asInstanceOf[Double]).toArray
 
     val arrLikelyMeans = likelyMeans.productIterator.map(_.asInstanceOf[Double]).toArray
     val arrUnlikelyMeans = unlikelyMeans.productIterator.map(_.asInstanceOf[Double]).toArray
 
-    val likelyCount = dataLikely.count()
-    val unlikelyCount = dataUnlikely.count()
+    val likelyCount = dataLikely.count().toDouble
+    val unlikelyCount = dataUnlikely.count().toDouble
+
+    //println(s"likelyc: $likelyCount")
+    //println(s"unlikely: $unlikelyCount")
     val totalCount = likelyCount + unlikelyCount
     val likelyGuess = likelyCount / totalCount
     val unlikelyGuess = unlikelyCount / totalCount
-
+    //println(s"likelyGuess: $likelyGuess")
+    //println(s"unlikelyGuess: $unlikelyGuess")
 
     // 2. Apply the predictInjury function to each line
     val processedTestData = testData.map(line => {
@@ -131,12 +155,19 @@ object NaiveBayes {
       val features = fields.init.map(_.toDouble) // Exclude the last field
       val actualLabel = fields.last.toDouble // Get the actual label
 
+
       // Call predictInjury with the features and other parameters
       val predictedLabel = predictInjury(features, arrLikelyMeans, likelyVariances, arrUnlikelyMeans, unlikelyVariances, likelyGuess, unlikelyGuess)
 
       // Return a tuple containing the original line and the predicted label
       (line, predictedLabel, actualLabel)
     })
+    /*processedTestData.foreach {
+      case (line, predictedLabel, actualLabel) =>
+        println(s"Line: $line, Predicted Label: $predictedLabel, Actual Label: $actualLabel")
+    }*/
+
+
 
     // 4. Compare the new dataset with the original test data to calculate accuracy
     val accuracy = processedTestData.map {
@@ -145,20 +176,12 @@ object NaiveBayes {
     }.mean() * 100 // Convert to percentage
 
 
+    val precision = calculatePrecision(processedTestData)
 
     // Print the accuracy
     println(s"Accuracy: $accuracy%")
+    println(s"Precision: $precision%")
 
 
   }
 }
-/*
-Split the data into 2 datasets of likely and unlikely
-get the normal distribution of each category for both likely and unlikely and find mean and standard deviation for each
-make a guess that the person is likely to be injured and initial guess will be 0.5
-initial guess for unlikely is also 0.5
-the score for likely is
-lne(initial guess * P(height | likely) * P(weight | likely))
-z-score = (x – μ) / σ
-*/
-
