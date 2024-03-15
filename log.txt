@@ -8,4 +8,4 @@ Debugging math error and guassian probability function: Brandon - 1 hour
 Computing accuracy: Brandon - 10 minutes
 Calculate Means function: Nathan - 45 minutes
 Calculate Standard Deviation Function: Nathan - 1 hour
-Process and split data: 30 minutes
+Process and split data: Nathan - 30 minutes
