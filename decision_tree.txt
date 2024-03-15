@@ -1,0 +1,309 @@
+If (feature 4 <= 0.4428055261352174){
+   If (feature 3 <= 0.5)
+    If (feature 0 <= 20.5)
+     If (feature 4 <= 0.08696018806092015)
+      If (feature 1 <= 75.87258731060919)
+       Predict: 0.0
+      Else (feature 1 > 75.87258731060919)
+       Predict: 1.0
+     Else (feature 4 > 0.08696018806092015)
+      If (feature 1 <= 78.98625347543621)
+       Predict: 1.0
+      Else (feature 1 > 78.98625347543621)
+       Predict: 0.0
+    Else (feature 0 > 20.5)
+     If (feature 1 <= 85.89337423400617)
+      Predict: 0.0
+     Else (feature 1 > 85.89337423400617)
+      If (feature 0 <= 35.5)
+       Predict: 1.0
+      Else (feature 0 > 35.5)
+       Predict: 0.0
+   Else (feature 3 > 0.5)
+    If (feature 1 <= 64.62311127820573)
+     If (feature 4 <= 0.2409178645324575)
+      If (feature 2 <= 182.67273862371553)
+       Predict: 1.0
+      Else (feature 2 > 182.67273862371553)
+       Predict: 0.0
+     Else (feature 4 > 0.2409178645324575)
+      Predict: 0.0
+    Else (feature 1 > 64.62311127820573)
+     If (feature 5 <= 1.5)
+      If (feature 0 <= 25.5)
+       Predict: 1.0
+      Else (feature 0 > 25.5)
+       Predict: 0.0
+     Else (feature 5 > 1.5)
+      If (feature 0 <= 25.5)
+       Predict: 0.0
+      Else (feature 0 > 25.5)
+       Predict: 1.0
+  Else (feature 4 > 0.4428055261352174)
+   If (feature 0 <= 24.5)
+    If (feature 0 <= 23.5)
+     If (feature 4 <= 0.7305597676528658)
+      If (feature 2 <= 194.80550733510773)
+       Predict: 0.0
+      Else (feature 2 > 194.80550733510773)
+       Predict: 1.0
+     Else (feature 4 > 0.7305597676528658)
+      If (feature 4 <= 0.8615552853602126)
+       Predict: 1.0
+      Else (feature 4 > 0.8615552853602126)
+       Predict: 0.0
+    Else (feature 0 > 23.5)
+     If (feature 1 <= 72.55325606570747)
+      Predict: 0.0
+     Else (feature 1 > 72.55325606570747)
+      If (feature 4 <= 0.5780834066838123)
+       Predict: 1.0
+      Else (feature 4 > 0.5780834066838123)
+       Predict: 0.0
+   Else (feature 0 > 24.5)
+    If (feature 5 <= 5.5)
+     If (feature 5 <= 1.5)
+      Predict: 1.0
+     Else (feature 5 > 1.5)
+      If (feature 0 <= 33.5)
+       Predict: 1.0
+      Else (feature 0 > 33.5)
+       Predict: 0.0
+    Else (feature 5 > 5.5)
+     If (feature 0 <= 30.5)
+      If (feature 0 <= 26.5)
+       Predict: 0.0
+      Else (feature 0 > 26.5)
+       Predict: 1.0
+     Else (feature 0 > 30.5)
+      Predict: 0.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Feature_4 <= 0.4428055261352174
+|-- Feature_3 <= 0.5
+|   |-- Feature_0 <= 20.5
+|   |   |-- Feature_4 <= 0.08696018806092015
+|   |   |   |-- Feature_1 <= 75.87258731060919: Predict 0.0
+|   |   |   |-- Feature_1 > 75.87258731060919: Predict 1.0
+|   |   |-- Feature_4 > 0.08696018806092015
+|   |   |   |-- Feature_1 <= 78.98625347543621: Predict 1.0
+|   |   |   |-- Feature_1 > 78.98625347543621: Predict 0.0
+|   |-- Feature_0 > 20.5
+|   |   |-- Feature_1 <= 85.89337423400617: Predict 0.0
+|   |   |-- Feature_1 > 85.89337423400617
+|   |   |   |-- Feature_0 <= 35.5: Predict 1.0
+|   |   |   |-- Feature_0 > 35.5: Predict 0.0
+|-- Feature_3 > 0.5
+|   |-- Feature_1 <= 64.62311127820573
+|   |   |-- Feature_4 <= 0.2409178645324575
+|   |   |   |-- Feature_2 <= 182.67273862371553: Predict 1.0
+|   |   |   |-- Feature_2 > 182.67273862371553: Predict 0.0
+|   |   |-- Feature_4 > 0.2409178645324575: Predict 0.0
+|   |-- Feature_1 > 64.62311127820573
+|   |   |-- Feature_5 <= 1.5
+|   |   |   |-- Feature_0 <= 25.5: Predict 1.0
+|   |   |   |-- Feature_0 > 25.5: Predict 0.0
+|   |   |-- Feature_5 > 1.5
+|   |   |   |-- Feature_0 <= 25.5: Predict 0.0
+|   |   |   |-- Feature_0 > 25.5: Predict 1.0
+|-- Feature_4 > 0.4428055261352174
+|   |-- Feature_0 <= 24.5
+|   |   |-- Feature_0 <= 23.5
+|   |   |   |-- Feature_4 <= 0.7305597676528658
+|   |   |   |   |-- Feature_2 <= 194.80550733510773: Predict 0.0
+|   |   |   |   |-- Feature_2 > 194.80550733510773: Predict 1.0
+|   |   |   |-- Feature_4 > 0.7305597676528658
+|   |   |   |   |-- Feature_4 <= 0.8615552853602126: Predict 1.0
+|   |   |   |   |-- Feature_4 > 0.8615552853602126: Predict 0.0
+|   |   |-- Feature_0 > 23.5
+|   |   |   |-- Feature_1 <= 72.55325606570747: Predict 0.0
+|   |   |   |-- Feature_1 > 72.55325606570747
+|   |   |   |   |-- Feature_4 <= 0.5780834066838123: Predict 1.0
+|   |   |   |   |-- Feature_4 > 0.5780834066838123: Predict 0.0
+|   |-- Feature_0 > 24.5
+|   |   |-- Feature_5 <= 5.5
+|   |   |   |-- Feature_5 <= 1.5: Predict 1.0
+|   |   |   |-- Feature_5 > 1.5
+|   |   |   |   |-- Feature_0 <= 33.5: Predict 1.0
+|   |   |   |   |-- Feature_0 > 33.5: Predict 0.0
+|   |   |-- Feature_5 > 5.5
+|   |   |   |-- Feature_0 <= 30.5
+|   |   |   |   |-- Feature_0 <= 26.5: Predict 0.0
+|   |   |   |   |-- Feature_0 > 26.5: Predict 1.0
+|   |   |   |-- Feature_0 > 30.5: Predict 0.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Feature 4 <= 0.4428055261352174 Predict: 
+|   Feature 3 <= 0.5 Predict: 
+|   |   Feature 0 <= 20.5 Predict: 
+|   |   |   Feature 4 <= 0.08696018806092015 Predict: 
+|   |   |   |   Feature 1 <= 75.87258731060919 Predict: 0.0
+|   |   |   |   Feature 1 > 75.87258731060919 Predict: 1.0
+|   |   |   Feature 4 > 0.08696018806092015 Predict: 
+|   |   |   |   Feature 1 <= 78.98625347543621 Predict: 1.0
+|   |   |   |   Feature 1 > 78.98625347543621 Predict: 0.0
+|   |   Feature 0 > 20.5 Predict: 
+|   |   |   Feature 1 <= 85.89337423400617 Predict: 0.0
+|   |   |   Feature 1 > 85.89337423400617 Predict: 
+|   |   |   |   Feature 0 <= 35.5 Predict: 1.0
+|   |   |   |   Feature 0 > 35.5 Predict: 0.0
+|   Feature 3 > 0.5 Predict: 
+|   |   Feature 1 <= 64.62311127820573 Predict: 
+|   |   |   Feature 4 <= 0.2409178645324575 Predict: 
+|   |   |   |   Feature 2 <= 182.67273862371553 Predict: 1.0
+|   |   |   |   Feature 2 > 182.67273862371553 Predict: 0.0
+|   |   |   Feature 4 > 0.2409178645324575 Predict: 0.0
+|   |   Feature 1 > 64.62311127820573 Predict: 
+|   |   |   Feature 5 <= 1.5 Predict: 
+|   |   |   |   Feature 0 <= 25.5 Predict: 1.0
+|   |   |   |   Feature 0 > 25.5 Predict: 0.0
+|   |   |   Feature 5 > 1.5 Predict: 
+|   |   |   |   Feature 0 <= 25.5 Predict: 0.0
+|   |   |   |   Feature 0 > 25.5 Predict: 1.0
+Feature 4 > 0.4428055261352174 Predict: 
+|   Feature 0 <= 24.5 Predict: 
+|   |   Feature 0 <= 23.5 Predict: 
+|   |   |   Feature 4 <= 0.7305597676528658 Predict: 
+|   |   |   |   Feature 2 <= 194.80550733510773 Predict: 0.0
+|   |   |   |   Feature 2 > 194.80550733510773 Predict: 1.0
+|   |   |   Feature 4 > 0.7305597676528658 Predict: 
+|   |   |   |   Feature 4 <= 0.8615552853602126 Predict: 1.0
+|   |   |   |   Feature 4 > 0.8615552853602126 Predict: 0.0
+|   |   Feature 0 > 23.5 Predict: 
+|   |   |   Feature 1 <= 72.55325606570747 Predict: 0.0
+|   |   |   Feature 1 > 72.55325606570747 Predict: 
+|   |   |   |   Feature 4 <= 0.5780834066838123 Predict: 1.0
+|   |   |   |   Feature 4 > 0.5780834066838123 Predict: 0.0
+|   Feature 0 > 24.5 Predict: 
+|   |   Feature 5 <= 5.5 Predict: 
+|   |   |   Feature 5 <= 1.5 Predict: 1.0
+|   |   |   Feature 5 > 1.5 Predict: 
+|   |   |   |   Feature 0 <= 33.5 Predict: 1.0
+|   |   |   |   Feature 0 > 33.5 Predict: 0.0
+|   |   Feature 5 > 5.5 Predict: 
+|   |   |   Feature 0 <= 30.5 Predict: 
+|   |   |   |   Feature 0 <= 26.5 Predict: 0.0
+|   |   |   |   Feature 0 > 26.5 Predict: 1.0
+|   |   |   Feature 0 > 30.5 Predict: 0.0
+
+
+
+
+
+
+
+
+
+
+
+Training_Intensity <= 0.4428055261352174 Predict: 
+|   Previous_Injuries <= 0.5 Predict: 
+|   |   Player_Age <= 20.5 Predict: 
+|   |   |   Training_Intensity <= 0.08696018806092015 Predict: 
+|   |   |   |   Player_Weight <= 75.87258731060919 Predict: 0.0
+|   |   |   |   Player_Weight > 75.87258731060919 Predict: 1.0
+|   |   |   Training_Intensity > 0.08696018806092015 Predict: 
+|   |   |   |   Player_Weight <= 78.98625347543621 Predict: 1.0
+|   |   |   |   Player_Weight > 78.98625347543621 Predict: 0.0
+|   |   Player_Age > 20.5 Predict: 
+|   |   |   Player_Weight <= 85.89337423400617 Predict: 0.0
+|   |   |   Player_Weight > 85.89337423400617 Predict: 
+|   |   |   |   Player_Age <= 35.5 Predict: 1.0
+|   |   |   |   Player_Age > 35.5 Predict: 0.0
+|   Previous_Injuries > 0.5 Predict: 
+|   |   Player_Weight <= 64.62311127820573 Predict: 
+|   |   |   Training_Intensity <= 0.2409178645324575 Predict: 
+|   |   |   |   Player_Height <= 182.67273862371553 Predict: 1.0
+|   |   |   |   Player_Height > 182.67273862371553 Predict: 0.0
+|   |   |   Training_Intensity > 0.2409178645324575 Predict: 0.0
+|   |   Player_Weight > 64.62311127820573 Predict: 
+|   |   |   Recovery_Time <= 1.5 Predict: 
+|   |   |   |   Player_Age <= 25.5 Predict: 1.0
+|   |   |   |   Player_Age > 25.5 Predict: 0.0
+|   |   |   Recovery_Time > 1.5 Predict: 
+|   |   |   |   Player_Age <= 25.5 Predict: 0.0
+|   |   |   |   Player_Age > 25.5 Predict: 1.0
+Training_Intensity > 0.4428055261352174 Predict: 
+|   Player_Age <= 24.5 Predict: 
+|   |   Player_Age <= 23.5 Predict: 
+|   |   |   Training_Intensity <= 0.7305597676528658 Predict: 
+|   |   |   |   Player_Height <= 194.80550733510773 Predict: 0.0
+|   |   |   |   Player_Height > 194.80550733510773 Predict: 1.0
+|   |   |   Training_Intensity > 0.7305597676528658 Predict: 
+|   |   |   |   Training_Intensity <= 0.8615552853602126 Predict: 1.0
+|   |   |   |   Training_Intensity > 0.8615552853602126 Predict: 0.0
+|   |   Player_Age > 23.5 Predict: 
+|   |   |   Player_Weight <= 72.55325606570747 Predict: 0.0
+|   |   |   Player_Weight > 72.55325606570747 Predict: 
+|   |   |   |   Training_Intensity <= 0.5780834066838123 Predict: 1.0
+|   |   |   |   Training_Intensity > 0.5780834066838123 Predict: 0.0
+|   Player_Age > 24.5 Predict: 
+|   |   Recovery_Time <= 5.5 Predict: 
+|   |   |   Recovery_Time <= 1.5 Predict: 
+|   |   |   |   Player_Age <= 33.5 Predict: 1.0
+|   |   |   |   Player_Age > 33.5 Predict: 0.0
+|   |   |   Recovery_Time > 1.5 Predict: 
+|   |   |   |   Player_Age <= 30.5 Predict: 
+|   |   |   |   |   Player_Age <= 26.5 Predict: 0.0
+|   |   |   |   |   Player_Age > 26.5 Predict: 1.0
+|   |   |   |   Player_Age > 30.5 Predict: 0.0
+
+
+entropy of training set = 0.9988
+entropy of test set = 0.9946
+
+Accuracy: 0.5243055555555556
+Precision: 0.5236844774423888
+Recall: 0.5243055555555556
+F1 Score: 0.5232293368015647
+
+Information Gain for Player_Age in training data: -2.0778192868586993
+Information Gain for Player_Age in test data: -2.0608394877734924
+Information Gain for Player_Weight in training data: -5.534087550651562
+Information Gain for Player_Weight in test data: -4.7444560929489406
+Information Gain for Player_Height in training data: -5.534087550651562
+Information Gain for Player_Height in test data: -4.7444560929489406
+Information Gain for Previous_Injuries in training data: 0.3066597418638598
+Information Gain for Previous_Injuries in test data: 0.31364085444472134
+Information Gain for Training_Intensity in training data: -5.534087550651562
+Information Gain for Training_Intensity in test data: -4.7444560929489406
+Information Gain for Recovery_Time in training data: -0.7818582350326014
+Information Gain for Recovery_Time in test data: -0.7905210425690045
+
+
+The best attribute for splitting is: Previous_Injuries
+
+
+Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),
+Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(Some(Previous_Injuries),Map(1 -> Node(None,Map(),Some(27.941747572815533))),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None), 0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(Some(Previous_Injuries),Map(0 -> Node(None,Map(),Some(28.53814432989691))),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)),None)

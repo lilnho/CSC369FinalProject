@@ -30,6 +30,16 @@ object InfoGain {
     totalEntropy - weightedEntropy
   }
 
+  val columnMapping = Map(
+    "_c0" -> "Player_Age",
+    "_c1" -> "Player_Weight",
+    "_c2" -> "Player_Height",
+    "_c3" -> "Previous_Injuries",
+    "_c4" -> "Training_Intensity",
+    "_c5" -> "Recovery_Time",
+    "_c6" -> "Likelihood_of_Injury"
+  )
+
   // Find the best attribute based on entropy
   def findAttribute(data: DataFrame, featureCols: Array[String], labelCol: String): (String, Double) = {
     featureCols.map { feature =>
@@ -56,27 +66,18 @@ object InfoGain {
       val featureCols = data.columns.dropRight(1)
       val labelCol = data.columns.last
 
-      // Find the best split based on entropy
-      val (bestFeature, bestInformationGain) = findAttribute(data, featureCols, labelCol)
-
-      // Map the best feature to original column name
-      val columnMapping = Map(
-        "_c0" -> "Player_Age",
-        "_c1" -> "Player_Weight",
-        "_c2" -> "Player_Height",
-        "_c3" -> "Previous_Injuries",
-        "_c4" -> "Training_Intensity",
-        "_c5" -> "Recovery_Time",
-        "_c6" -> "Likelihood_of_Injury"
-      )
-      val bestFeatureMapped = columnMapping(bestFeature)
-
-      println(s"Best feature to split on: $bestFeatureMapped")
-      println(s"Information gain: $bestInformationGain")
+      // Iterate through each feature column and calculate information gain
+      featureCols.foreach { feature =>
+        val informationGainValue = informationGain(data, feature, labelCol)
+        // Map the feature name to its original column name
+        val featureMapped = columnMapping(feature)
+        println(s"Feature: $featureMapped, Information Gain: $informationGainValue")
+      }
     } catch {
       case e: Exception => println("Error occurred: " + e.getMessage)
     } finally {
       spark.stop()
     }
   }
+
 }
